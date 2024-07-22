@@ -6,51 +6,34 @@ body {
   align-items: center;
 }
 
-.architecture-list {
+.list-container {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
-  width: 320px;
-  align-items: center;
+  flex-flow: column nowrap;
+  list-style: none;
+  width: 100%;
   gap: 4px;
 }
 
-.frame-container {
+li {
   display: flex;
+  flex-flow: row nowrap;
   padding: 12px;
   align-items: center;
   gap: 20px;
-  align-self: stretch;
   background-color: #141415;
 }
 
-.img {
+img {
   width: 64px;
   height: 64px;
   background-size: cover;
 }
 
-.text-wrapper {
+.architecture-text {
   flex: 1;
   font-family: "Pretendard-Regular", Helvetica;
   color: #ffffff;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
-}
-
-.architecture {
-  background-image: url(/src/assets/images/architecture.png);
-}
-
-.building {
-  background-image: url(/src/assets/images/building.png);
-}
-
-.graphics {
-  background-image: url(/src/assets/images/graphics.png);
-}
-
-.climatology {
-  background-image: url(/src/assets/images/climatology.png);
 }
