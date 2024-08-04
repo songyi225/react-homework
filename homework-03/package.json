@@ -1,0 +1,41 @@
+{
+	"private": true,
+	"type": "module",
+	"name": "component-test-with-vitest",
+	"description": "Vite 커스텀 템플릿 리액트 프로젝트",
+	"version": "0.1.0",
+	"scripts": {
+		"dev": "vite --host",
+		"build": "vite build",
+		"lint": "eslint \"./src/**\" --report-unused-disable-directives --ignore-pattern .gitignore",
+		"preview": "vite preview",
+		"test": "vitest",
+		"test:ui": "vitest --ui"
+	},
+	"dependencies": {
+		"react": "18.3.1",
+		"react-dom": "18.3.1"
+	},
+	"devDependencies": {
+		"@eslint/js": "9.8.0",
+		"@testing-library/jest-dom": "^6.4.8",
+		"@testing-library/react": "^16.0.0",
+		"@testing-library/user-event": "^14.5.2",
+		"@types/node": "20.14.12",
+		"@types/react": "18.3.3",
+		"@types/react-dom": "18.3.0",
+		"@vitejs/plugin-react": "4.3.1",
+		"@vitest/ui": "2.0.5",
+		"eslint": "9.8.0",
+		"eslint-plugin-jest-dom": "^5.4.0",
+		"eslint-plugin-react": "7.35.0",
+		"eslint-plugin-react-hooks": "4.6.2",
+		"eslint-plugin-react-refresh": "0.4.9",
+		"eslint-plugin-testing-library": "^6.2.2",
+		"globals": "15.8.0",
+		"jsdom": "^24.1.1",
+		"prop-types": "15.8.1",
+		"vite": "5.3.5",
+		"vitest": "2.0.5"
+	}
+}
