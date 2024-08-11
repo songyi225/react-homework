@@ -16,8 +16,13 @@ h6 {
 button {
   cursor: pointer;
   line-height: 1;
-}
+  opacity: 0.75;
 
-button:disabled {
-  cursor: not-allowed;
+  &:hover:not(:disabled) {
+    opacity: 1;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
