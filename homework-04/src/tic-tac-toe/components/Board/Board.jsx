@@ -1,38 +1,22 @@
-import { useState } from 'react';
+import { bool, func } from 'prop-types';
+import {
+  OneOfPlayerListType,
+  OneOfPlayerType,
+  WinnerInfoType,
+} from '@/tic-tac-toe/types/type.d';
 import Squares from '../Squares/Squares';
 import Status from '../Status/Status';
 import S from './Board.module.css';
-import {
-  checkeWinner,
-  INITIAL_SQUARES,
-  PLAYER,
-  PLAYER_COUNT,
-} from '@/tic-tac-toe/constants';
 
-function Board() {
-  const [squares, setSquares] = useState(INITIAL_SQUARES);
+Board.propTypes = {
+  winnerInfo: WinnerInfoType,
+  nextPlayer: OneOfPlayerType.isRequired,
+  isDraw: bool.isRequired,
+  squares: OneOfPlayerListType,
+  onPlay: func,
+};
 
-  const handlePlayGame = (index) => () => {
-    if (winnerInfo) {
-      alert('GAME OVER');
-      return;
-    }
-    setSquares((prevSquares) => {
-      const nextSquares = prevSquares.map((square, idx) => {
-        return idx === index ? nextPlayer : square;
-      });
-      return nextSquares;
-    });
-  };
-
-  const winnerInfo = checkeWinner(squares);
-  const gameIndex = squares.filter(Boolean).length;
-
-  const isPlayerOneTurn = gameIndex % PLAYER_COUNT === 0;
-  const nextPlayer = isPlayerOneTurn ? PLAYER.ONE : PLAYER.TWO;
-
-  const isDraw = !winnerInfo && squares.every(Boolean);
-
+function Board({ winnerInfo, nextPlayer, isDraw, squares, onPlay }) {
   return (
     <div className={S.component}>
       <Status
@@ -40,11 +24,7 @@ function Board() {
         nextPlayer={nextPlayer}
         isDraw={isDraw}
       />
-      <Squares
-        squares={squares}
-        winnerInfo={winnerInfo}
-        onPlay={handlePlayGame}
-      />
+      <Squares squares={squares} winnerInfo={winnerInfo} onPlay={onPlay} />
     </div>
   );
 }
