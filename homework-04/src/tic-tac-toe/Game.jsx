@@ -27,9 +27,17 @@ function Game() {
     const nextSquares = currentSquares.map((square, idx) => {
       return idx === index ? nextPlayer : square;
     });
-    const nextGameHistory = [...gameHistory, nextSquares];
+    const nextGameHistory = [
+      ...gameHistory.slice(0, nextGameIndex),
+      nextSquares,
+    ];
 
     setGameHistory(nextGameHistory);
+  };
+
+  const handleTimeTravel = (index) => {
+    // 되돌리고 싶은 시간의 기억으로 게임 인덱스를 업데이트 요청
+    setGameIndex(index);
   };
 
   const currentSquares = gameHistory[gameIndex];
@@ -48,7 +56,11 @@ function Game() {
         onPlay={handlePlayGame}
         isDraw={isDraw}
       />
-      <History />
+      <History
+        onTimeTravel={handleTimeTravel}
+        gameHistory={gameHistory}
+        gameIndex={gameIndex}
+      />
     </div>
   );
 }
