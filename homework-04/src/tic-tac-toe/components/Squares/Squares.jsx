@@ -1,34 +1,23 @@
+import { WINNERS_COLOR, PLAYER_LIST } from '@/tic-tac-toe/constants';
 import S from './Squares.module.css';
 import Square from '../Square/Square';
-import { useState } from 'react';
-import {
-  PLAYER,
-  PLAYER_COUNT,
-  INITIAL_SQUARES,
-  WINNERS_COLOR,
-  checkeWinner,
-} from '@/tic-tac-toe/constants';
+import { arrayOf, func, number, oneOf, shape } from 'prop-types';
 
-function Squares() {
-  const [squares, setSquares] = useState(INITIAL_SQUARES);
+const OneOfPlayerType = oneOf(PLAYER_LIST);
+const OneOfPlayerListType = arrayOf(OneOfPlayerType);
+const WinnerInfoType = shape({
+  winner: OneOfPlayerType,
+  condition: arrayOf(number),
+});
 
-  const handlePlayGame = (index) => {
-    setSquares((prevSquares) => {
-      const nextSquares = prevSquares.map((square, idx) => {
-        return idx === index ? currentPlayer : square;
-      });
-      return nextSquares;
-    });
-  };
+Squares.propTypes = {
+  squares: OneOfPlayerListType.isRequired,
+  winnerInfo: WinnerInfoType,
+  onPlay: func,
+};
 
-  const winnerInfo = checkeWinner(squares);
-
-  const gameIndex = squares.filter(Boolean).length;
-
-  const isPlayerOneTurn = gameIndex % PLAYER_COUNT === 0;
-
-  const currentPlayer = isPlayerOneTurn ? PLAYER.ONE : PLAYER.TWO;
-
+// 상태를 가지지 않는(Stateless) 컴포넌트
+function Squares({ squares, winnerInfo, onPlay }) {
   return (
     <div className={S.component}>
       {squares.map((square, index) => {
@@ -45,11 +34,7 @@ function Squares() {
         }
 
         return (
-          <Square
-            key={index}
-            style={winnerStyles}
-            onPlay={handlePlayGame(index)}
-          >
+          <Square key={index} style={winnerStyles} onPlay={onPlay(index)}>
             {square}
           </Square>
         );

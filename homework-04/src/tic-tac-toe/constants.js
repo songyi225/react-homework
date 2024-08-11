@@ -6,6 +6,8 @@ export const PLAYER = {
   TWO: '🐱',
 };
 
+export const PLAYER_LIST = Object.values(PLAYER);
+
 export const PLAYER_COUNT = Object.keys(PLAYER).length;
 
 export const INITIAL_SQUARES = Array(9).fill(null);
