@@ -1,14 +1,11 @@
-import { WINNERS_COLOR, PLAYER_LIST } from '@/tic-tac-toe/constants';
-import S from './Squares.module.css';
+import { func } from 'prop-types';
+import { WINNERS_COLOR } from '@/tic-tac-toe/constants';
+import {
+  OneOfPlayerListType,
+  WinnerInfoType,
+} from '@/tic-tac-toe/types/type.d';
 import Square from '../Square/Square';
-import { arrayOf, func, number, oneOf, shape } from 'prop-types';
-
-const OneOfPlayerType = oneOf(PLAYER_LIST);
-const OneOfPlayerListType = arrayOf(OneOfPlayerType);
-const WinnerInfoType = shape({
-  winner: OneOfPlayerType,
-  condition: arrayOf(number),
-});
+import S from './Squares.module.css';
 
 Squares.propTypes = {
   squares: OneOfPlayerListType.isRequired,
@@ -16,7 +13,6 @@ Squares.propTypes = {
   onPlay: func,
 };
 
-// 상태를 가지지 않는(Stateless) 컴포넌트
 function Squares({ squares, winnerInfo, onPlay }) {
   return (
     <div className={S.component}>

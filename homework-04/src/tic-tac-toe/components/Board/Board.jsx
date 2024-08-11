@@ -19,7 +19,7 @@ function Board() {
     }
     setSquares((prevSquares) => {
       const nextSquares = prevSquares.map((square, idx) => {
-        return idx === index ? currentPlayer : square;
+        return idx === index ? nextPlayer : square;
       });
       return nextSquares;
     });
@@ -29,11 +29,17 @@ function Board() {
   const gameIndex = squares.filter(Boolean).length;
 
   const isPlayerOneTurn = gameIndex % PLAYER_COUNT === 0;
-  const currentPlayer = isPlayerOneTurn ? PLAYER.ONE : PLAYER.TWO;
+  const nextPlayer = isPlayerOneTurn ? PLAYER.ONE : PLAYER.TWO;
+
+  const isDraw = !winnerInfo && squares.every(Boolean);
 
   return (
     <div className={S.component}>
-      <Status />
+      <Status
+        winner={winnerInfo?.winner}
+        nextPlayer={nextPlayer}
+        isDraw={isDraw}
+      />
       <Squares
         squares={squares}
         winnerInfo={winnerInfo}
